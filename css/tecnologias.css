@@ -1,0 +1,130 @@
+body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 82px 20px 24px;
+    background: #000;
+}
+
+#matrix-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.terminal-window {
+    position: relative;
+    width: min(650px, calc(100vw - 40px));
+    height: min(420px, calc(100dvh - 120px));
+    min-height: 300px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #333;
+    border-radius: 6px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+.terminal-header {
+    flex: 0 0 auto;
+    min-height: 38px;
+    background: #222;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.dot {
+    flex: 0 0 auto;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal-title {
+    min-width: 0;
+    margin-left: 10px;
+    color: #bbb;
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.terminal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: clamp(14px, 3vw, 20px);
+    color: #0f0;
+    font-size: clamp(0.86rem, 2.4vw, 1.1rem);
+    line-height: 1.6;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    white-space: pre-wrap;
+    scrollbar-color: #0f0 #111;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 68px 12px 14px;
+    }
+
+    .terminal-window {
+        width: 100%;
+        height: calc(100dvh - 86px);
+        min-height: 280px;
+    }
+
+    .terminal-header {
+        min-height: 34px;
+        padding: 7px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+    }
+
+    .terminal-title {
+        margin-left: 6px;
+        font-size: 0.72rem;
+    }
+
+    .terminal-body {
+        font-size: clamp(0.78rem, 4vw, 0.98rem);
+        line-height: 1.5;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 52px 12px 10px;
+    }
+
+    .terminal-window {
+        height: calc(100dvh - 62px);
+        width: min(760px, calc(100vw - 24px));
+        min-height: 0;
+    }
+
+    .terminal-body {
+        padding: 10px 14px;
+        font-size: 0.78rem;
+        line-height: 1.35;
+    }
+}

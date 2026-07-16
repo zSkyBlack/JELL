@@ -1,0 +1,220 @@
+.home-page {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 460px;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.background-image {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.instruction {
+    position: fixed;
+    top: max(24px, env(safe-area-inset-top));
+    left: 50%;
+    width: min(92vw, 900px);
+    transform: translateX(-50%);
+    padding: 0 10px;
+    text-align: center;
+    color: #fff;
+    font-size: clamp(1rem, 2.3vw, 1.8rem);
+    line-height: 1.25;
+    letter-spacing: clamp(1px, 0.3vw, 3px);
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 10;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.95);
+    transition: opacity 0.45s ease;
+}
+
+.wall {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 88px 4vw 135px;
+}
+
+.reveal-text {
+    max-width: 1200px;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    line-height: 1.05;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(12px, 2.5vw, 30px);
+}
+
+.word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.reveal-text .word > span {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.4) rotate(-15deg);
+    transition:
+        opacity 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.2),
+        transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.5);
+    padding: 0 0.04em;
+}
+
+.reveal-text .word > span.revealed {
+    opacity: 1;
+    transform: scale(1) rotate(calc(var(--rand-rot, 0) * 1deg));
+}
+
+.menu-container {
+    position: fixed;
+    bottom: max(30px, env(safe-area-inset-bottom));
+    left: 50%;
+    width: min(92vw, 680px);
+    transform: translateX(-50%) translateY(100px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(10px, 2vw, 25px);
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+}
+
+.menu-container.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.menu-btn {
+    min-width: 0;
+    padding: 14px 12px;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    line-height: 1.2;
+    text-align: center;
+    color: #fff;
+    background: #111;
+    border: 3px solid #000;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 #000;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    touch-action: manipulation;
+}
+
+.menu-btn:hover,
+.menu-btn:focus-visible {
+    background: #fff;
+    color: #111;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+#paint-container {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .home-page {
+        cursor: none;
+    }
+
+    .menu-btn {
+        cursor: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .home-page {
+        min-height: 420px;
+    }
+
+    .instruction {
+        top: max(16px, env(safe-area-inset-top));
+        width: 94vw;
+        font-size: clamp(0.85rem, 4vw, 1.15rem);
+        letter-spacing: 1.2px;
+    }
+
+    .wall {
+        padding: 78px 12px 118px;
+    }
+
+    .reveal-text {
+        font-size: clamp(2.25rem, 12vw, 4rem);
+        gap: 8px 14px;
+    }
+
+    .menu-container {
+        bottom: max(16px, env(safe-area-inset-bottom));
+        width: 94vw;
+        gap: 7px;
+    }
+
+    .menu-btn {
+        padding: 11px 5px;
+        border-width: 2px;
+        font-size: clamp(0.72rem, 3.6vw, 1rem);
+        box-shadow: 2px 2px 0 #000;
+    }
+
+    .paint-drop {
+        filter: blur(9px);
+    }
+}
+
+@media (max-width: 350px) {
+    .reveal-text {
+        font-size: 2rem;
+    }
+
+    .menu-btn {
+        font-size: 0.68rem;
+        padding-inline: 2px;
+    }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+    .instruction {
+        top: 10px;
+        font-size: 0.85rem;
+    }
+
+    .wall {
+        padding: 44px 12px 76px;
+    }
+
+    .reveal-text {
+        font-size: clamp(2.2rem, 10vh, 4.2rem);
+    }
+
+    .menu-container {
+        bottom: 10px;
+    }
+
+    .menu-btn {
+        padding-block: 8px;
+    }
+}

@@ -1,0 +1,640 @@
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at center, rgba(255, 142, 35, 0.18), transparent 32%),
+        linear-gradient(180deg, #1d1815 0%, #0d0b0a 100%);
+}
+
+.back-btn {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    z-index: 50;
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    text-decoration: none;
+
+    color: #f4ddbd;
+    background: rgba(0, 0, 0, 0.35);
+
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 220, 180, 0.18);
+
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 15px rgba(255, 95, 0, 0.12);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(255, 95, 0, 0.35);
+}
+
+.contact-page {
+    min-height: 100vh;
+    padding: 90px 20px 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-heading {
+    margin: 0 0 10px;
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1.7rem, 4vw, 3rem);
+    color: #f5dfbd;
+
+    text-align: center;
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 8px rgba(255, 117, 24, 0.65),
+        0 0 22px rgba(255, 66, 0, 0.35);
+
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.owl-contact-scene {
+    position: relative;
+
+    width: min(760px, 95vw);
+    height: min(680px, 78vh);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.owl-button {
+    position: relative;
+    z-index: 10;
+
+    width: min(430px, 82vw);
+    border: none;
+    background: transparent;
+    padding: 0;
+
+    cursor: pointer;
+
+    animation: owlFloat 3s ease-in-out infinite;
+    transition:
+        transform 0.6s ease,
+        opacity 0.5s ease,
+        filter 0.4s ease,
+        visibility 0s linear 0s;
+}
+
+.owl-button:hover {
+    transform: scale(1.035);
+}
+
+.owl-button:active {
+    transform: scale(0.98);
+}
+
+.owl-image {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    display: block;
+
+    user-select: none;
+    pointer-events: none;
+
+    border-radius: 28px;
+
+    filter:
+        drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 0 14px rgba(255, 93, 0, 0.25));
+}
+
+.magic-glow {
+    position: absolute;
+    z-index: 1;
+
+    left: 50%;
+    top: 52%;
+
+    width: 68%;
+    height: 34%;
+
+    transform: translate(-50%, -50%);
+    border-radius: 24px;
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 128, 0, 0.55) 0%,
+        rgba(255, 58, 0, 0.35) 38%,
+        rgba(255, 58, 0, 0) 72%
+    );
+
+    filter: blur(16px);
+
+    animation: magicPulse 1.4s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.opening-envelope {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    z-index: 5;
+
+    width: 62%;
+    height: 28%;
+
+    transform: translate(-50%, -50%) scale(0.95);
+    transform-style: preserve-3d;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.opening-envelope span {
+    position: absolute;
+    display: block;
+}
+
+.open-env-back {
+    inset: 0;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #e6c18f, #c9945e);
+    box-shadow:
+        0 0 18px rgba(255, 101, 0, 0.55),
+        0 12px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.open-env-letter {
+    left: 8%;
+    right: 8%;
+    bottom: 16%;
+    height: 70%;
+
+    border-radius: 8px;
+    background: linear-gradient(180deg, #fff2d5, #efd4a4);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.18);
+
+    transform: translateY(42px);
+    opacity: 0;
+    z-index: 2;
+}
+
+.open-env-left {
+    inset: 0;
+    background: #c9935d;
+    clip-path: polygon(0 0, 50% 50%, 0 100%);
+    z-index: 4;
+}
+
+.open-env-right {
+    inset: 0;
+    background: #bf8954;
+    clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+    z-index: 4;
+}
+
+.open-env-bottom {
+    inset: 0;
+    background: #d7a56f;
+    clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+    z-index: 5;
+}
+
+.open-env-flap {
+    inset: 0;
+    background: linear-gradient(180deg, #eac99b, #c99561);
+    clip-path: polygon(0 0, 100% 0, 50% 54%);
+    transform-origin: top center;
+    transform: rotateX(0deg);
+    z-index: 6;
+}
+
+.open-env-seal {
+    width: 46px;
+    height: 46px;
+    left: 50%;
+    top: 48%;
+
+    transform: translate(-50%, -10%);
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 35% 35%, #c83232 0%, #9a1919 45%, #651010 100%);
+
+    box-shadow:
+        inset -4px -4px 6px rgba(0,0,0,0.25),
+        inset 3px 3px 5px rgba(255,255,255,0.12),
+        0 4px 8px rgba(0,0,0,0.25);
+
+    z-index: 7;
+}
+
+.hint-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-hint {
+    position: absolute;
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1rem, 2.4vw, 1.6rem);
+
+    color: rgba(255, 232, 190, 0.96);
+
+    text-shadow:
+        0 0 8px rgba(255, 115, 0, 0.9),
+        0 0 18px rgba(255, 44, 0, 0.75),
+        0 0 34px rgba(255, 44, 0, 0.55);
+
+    white-space: nowrap;
+    opacity: 0;
+
+    animation: hintFloat 2.9s ease-out forwards;
+}
+
+.contact-card {
+    position: absolute;
+    z-index: 30;
+
+    left: 50%;
+    top: 50%;
+    width: min(460px, 88vw);
+
+    padding: 34px 30px;
+
+    background:
+        linear-gradient(135deg, rgba(255, 246, 221, 0.96), rgba(224, 190, 138, 0.96)),
+        repeating-linear-gradient(
+            0deg,
+            rgba(90, 55, 24, 0.03) 0px,
+            rgba(90, 55, 24, 0.03) 1px,
+            transparent 1px,
+            transparent 6px
+        );
+
+    border-radius: 18px;
+    border: 2px solid rgba(92, 53, 25, 0.28);
+
+    box-shadow:
+        0 22px 40px rgba(0, 0, 0, 0.45),
+        inset 0 0 18px rgba(97, 55, 21, 0.08),
+        0 0 28px rgba(255, 101, 0, 0.22);
+
+    font-family: 'Special Elite', cursive;
+    color: #2d1d12;
+
+    text-align: center;
+
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.82);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.8s cubic-bezier(.2, .9, .2, 1.2);
+}
+
+.contact-card::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+
+    border: 1px dashed rgba(80, 45, 20, 0.22);
+    border-radius: 12px;
+
+    pointer-events: none;
+}
+
+.contact-card h2 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 28px;
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    text-align: center;
+
+    color: #5a2410;
+
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.45);
+}
+
+.contact-info {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 0 0 22px;
+    line-height: 1.7;
+}
+
+.contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info span {
+    display: block;
+    margin-bottom: 6px;
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.15rem;
+    color: #7b2e15;
+}
+
+.contact-info a {
+    display: inline-block;
+    color: #2d1d12;
+    text-decoration: none;
+    word-break: break-word;
+    border-bottom: 1px solid rgba(90, 36, 16, 0.35);
+}
+
+.contact-info a:hover {
+    color: #9e3514;
+    border-bottom-color: #9e3514;
+}
+
+.owl-contact-scene.opening .opening-envelope {
+    opacity: 1;
+    animation: envelopePop 0.35s ease forwards;
+}
+
+.owl-contact-scene.opening .open-env-flap {
+    animation: flapOpen 0.75s ease forwards 0.25s;
+}
+
+.owl-contact-scene.opening .open-env-seal {
+    animation: sealBreak 0.35s ease forwards 0.18s;
+}
+
+.owl-contact-scene.opening .open-env-letter {
+    animation: innerLetterRise 0.75s ease forwards 0.55s;
+}
+
+.owl-contact-scene.opening .owl-image {
+    animation: owlFlash 1.25s ease forwards;
+}
+
+.owl-contact-scene.open .owl-button {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(6px);
+    animation: none;
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+        transform 0.45s ease,
+        opacity 0.45s ease,
+        filter 0.45s ease,
+        visibility 0s linear 0.45s;
+}
+
+.owl-contact-scene.open .magic-glow {
+    animation: none;
+    opacity: 0;
+}
+
+.owl-contact-scene.open .opening-envelope {
+    opacity: 0;
+}
+
+.owl-contact-scene.open .contact-card {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+body.contact-open .contact-heading {
+    opacity: 0;
+    transform: translateY(-18px);
+}
+
+@keyframes owlFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes magicPulse {
+    from {
+        opacity: 0.55;
+        transform: translate(-50%, -50%) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+}
+
+@keyframes hintFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.85) rotate(var(--hint-rot));
+        filter: blur(0);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.85;
+        filter: blur(0.5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-72px) scale(1.16) rotate(var(--hint-rot));
+        filter: blur(4px);
+    }
+}
+
+@keyframes envelopePop {
+    from {
+        transform: translate(-50%, -50%) scale(0.65);
+        filter: brightness(1);
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1.12);
+        filter: brightness(1.15);
+    }
+}
+
+@keyframes flapOpen {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    100% {
+        transform: rotateX(180deg);
+    }
+}
+
+@keyframes sealBreak {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -10%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10%) scale(0.25) rotate(25deg);
+    }
+}
+
+@keyframes innerLetterRise {
+    0% {
+        transform: translateY(42px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(-42px);
+        opacity: 1;
+    }
+}
+
+@keyframes owlFlash {
+    0% {
+        filter:
+            drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45))
+            drop-shadow(0 0 14px rgba(255, 93, 0, 0.25));
+    }
+
+    40% {
+        filter:
+            drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45))
+            drop-shadow(0 0 34px rgba(255, 105, 0, 0.95));
+    }
+
+    100% {
+        filter:
+            drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45))
+            drop-shadow(0 0 14px rgba(255, 93, 0, 0.25));
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .contact-page {
+        justify-content: flex-start;
+        padding-top: 95px;
+    }
+
+    .owl-contact-scene {
+        height: 680px;
+    }
+
+    .owl-button {
+        width: min(360px, 86vw);
+    }
+
+    .opening-envelope {
+        width: 70%;
+        height: 30%;
+    }
+
+    .owl-contact-scene.open .contact-card {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .back-btn {
+        top: 14px;
+        left: 14px;
+        font-size: 0.9rem;
+        padding: 8px 14px;
+    }
+
+    .contact-heading {
+        font-size: 1.7rem;
+    }
+
+    .contact-card {
+        padding: 28px 22px;
+    }
+
+    .contact-card h2 {
+        font-size: 2rem;
+    }
+
+    .open-env-seal {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Ajustes adicionales para alturas dinámicas y enlaces largos en móvil. */
+.contact-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.contact-info a {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    .contact-page {
+        min-height: 100dvh;
+        padding: 72px 12px 12px;
+    }
+
+    .owl-contact-scene {
+        width: 100%;
+        height: calc(100dvh - 92px);
+        min-height: 500px;
+    }
+
+    .contact-card {
+        width: min(92vw, 460px);
+        padding: 26px 17px;
+    }
+
+    .contact-info {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+    body {
+        overflow-y: auto;
+    }
+
+    .contact-page {
+        min-height: 620px;
+        padding-top: 58px;
+    }
+
+    .owl-contact-scene {
+        height: 540px;
+    }
+}
